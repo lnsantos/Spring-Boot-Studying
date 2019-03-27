@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lucasdosenai.domain.Categoria;
 import com.lucasdosenai.services.CategoriaService;
 
+import javassist.tools.rmi.ObjectNotFoundException;
+
 // 1° COLOCA ANOTAÇÃO
 @RestController
 @RequestMapping(value="/categorias")
@@ -19,7 +21,7 @@ public class CategoriaRecurso {
 	private CategoriaService SERVICE;
 	
 	@RequestMapping(value="/{id}" ,method=RequestMethod.GET)
-	public ResponseEntity<?>procurar(@PathVariable Integer id) {
+	public ResponseEntity<?>procurar(@PathVariable Integer id) throws ObjectNotFoundException {
 		
 		Categoria obj = SERVICE.buscar(id);
 		return ResponseEntity.ok().body(obj);
